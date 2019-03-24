@@ -21,7 +21,7 @@ v.DivideScalar(4.2)
 v.Magnitude()
 
 // u is a normalized vector with the same direction as vector v
-u := v.Unit()
+u := v.Normalize()
 
 // Dot Product
 s := vec2r.DotProduct(v, u)
