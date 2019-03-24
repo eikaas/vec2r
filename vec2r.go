@@ -53,7 +53,7 @@ func (v *Vec2D) Add(u Vec2D) {
 	v.Y = v.Y + u.Y
 }
 
-// Subtract substracts u from the vector
+// Subtract subtracts u from the vector
 func (v *Vec2D) Subtract(u Vec2D) {
 	v.X -= u.X
 	v.Y -= u.Y
