@@ -22,8 +22,8 @@ func (v *Vec2D) Copy() *Vec2D {
 	return &Vec2D{v.X, v.Y}
 }
 
-// Unit returns a new, normalized version of the vector in the same direction with length 1
-func (v *Vec2D) Unit() *Vec2D {
+// Normalize returns a new, normalized version of the vector in the same direction with length 1
+func (v *Vec2D) Normalize() *Vec2D {
 	u := v.Copy()
 	u.DivideScalar(v.Magnitude())
 	return u
