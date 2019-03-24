@@ -4,12 +4,26 @@ package vec2r
 import (
 	"fmt"
 	"math"
+	"math/rand"
+	"time"
 )
 
 // Vec2D is a 2-dimensional euclidean vector
 type Vec2D struct {
 	X float64
 	Y float64
+}
+
+func init() {
+	rand.Seed(time.Now().UTC().UnixNano())
+}
+
+// Rand creates a new, randomized vector
+func Rand(x, y float64) *Vec2D {
+	return &Vec2D{
+		X: rand.Float64() * x,
+		Y: rand.Float64() * y,
+	}
 }
 
 // New creates a new vector
@@ -25,8 +39,7 @@ func (v *Vec2D) Copy() *Vec2D {
 // Normalize returns a new, normalized version of the vector in the same direction with length 1
 func (v *Vec2D) Normalize() *Vec2D {
 	u := v.Copy()
-	u.DivideScalar(v.Magnitude())
-	return u
+	return u.DivideScalar(v.Magnitude())
 }
 
 // Magnitude returns the magnitude of the vector
@@ -48,39 +61,45 @@ func (v *Vec2D) Equals(u Vec2D) bool {
 }
 
 // Add adds u to the vector
-func (v *Vec2D) Add(u Vec2D) {
+func (v *Vec2D) Add(u Vec2D) *Vec2D {
 	v.X = v.X + u.X
 	v.Y = v.Y + u.Y
+	return v
 }
 
 // Subtract subtracts u from the vector
-func (v *Vec2D) Subtract(u Vec2D) {
+func (v *Vec2D) Subtract(u Vec2D) *Vec2D {
 	v.X -= u.X
 	v.Y -= u.Y
+	return v
 }
 
 // Multiply multiplies the vector with vector u
-func (v *Vec2D) Multiply(u Vec2D) {
+func (v *Vec2D) Multiply(u Vec2D) *Vec2D {
 	v.X *= u.X
 	v.Y *= u.Y
+	return v
 }
 
 // Divide divides vector v by vector u
-func (v *Vec2D) Divide(u Vec2D) {
+func (v *Vec2D) Divide(u Vec2D) *Vec2D {
 	v.X /= u.X
 	v.Y /= u.Y
+	return v
 }
 
 // MultiplyScalar multiplies the vector by the scalar s
-func (v *Vec2D) MultiplyScalar(s float64) {
+func (v *Vec2D) MultiplyScalar(s float64) *Vec2D {
 	v.X *= s
 	v.Y *= s
+	return v
 }
 
 // DivideScalar divides the vector by the scalar s
-func (v *Vec2D) DivideScalar(s float64) {
+func (v *Vec2D) DivideScalar(s float64) *Vec2D {
 	v.X /= s
 	v.Y /= s
+	return v
 }
 
 // DotProduct calculates the dot-product of two vectors
