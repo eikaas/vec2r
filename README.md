@@ -1,7 +1,8 @@
-# vec2r
+# vec2r [![Go Report Card](https://goreportcard.com/badge/github.com/eikaas/vec2r)](https://goreportcard.com/report/github.com/eikaas/vec2r)
 Simple 2D vector library for silly games, ~~self-driving trucks~~, ~~calculating rocket trajectories~~, etc.
 
 ## Usage
+Usage is pretty streight forward
 ```go
 // Create vectors
 v := vec2r.New(1.2, 3.4)
@@ -32,11 +33,12 @@ s := vec2r.CrossProduct(v, u)
 // Get angle between vectors v & u
 degrees := vec2r.Angle(v, u) * math.Pi/180
 
+```
+Vector notation helpers
+```go
 // u⃗ ⨯ v⃗
 fmt.Println(vec2r.SymArrow('u'), vec2r.SymCross, vec2r.SymArrow('v'))
 
 // ‖u⃗‖ ⋅ ‖v⃗‖
 fmt.Println(vec2r.SymMagnitude('u'), vec2r.SymDot, vec2r.SymMagnitude('v'))
-
-
 ```
