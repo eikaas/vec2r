@@ -1,6 +1,7 @@
 package vec2r_test
 
 import (
+	"math"
 	"testing"
 
 	"github.com/matryer/is"
@@ -22,9 +23,11 @@ func TestNew(t *testing.T) {
 
 func TestMagnitude(t *testing.T) {
 	is := is.New(t)
+	a := vec2r.Vec2D{12.0, 24.0}
+	b := vec2r.Vec2D{55.0, 120.0}
 
-	is.Equal(vec2r.New(12.0, 24.0).Magnitude(), 26.832815729997478)  // should be equal
-	is.Equal(vec2r.New(55.0, 120.0).Magnitude(), 132.00378782444085) // should be equal
+	is.Equal(math.Round(a.Magnitude()*100)/100, 26.83)  // should be equal
+	is.Equal(math.Round(b.Magnitude()*100)/100, 132.00) // should be equal
 }
 
 func TestEquals(t *testing.T) {
@@ -38,6 +41,21 @@ func TestEquals(t *testing.T) {
 	is.True(!a.Equals(c)) // should be false
 	is.True(!c.Equals(a)) // should be false
 	is.True(!c.Equals(b)) // should be false
+}
+
+func TestNormalize(t *testing.T) {
+	is := is.New(t)
+	v := vec2r.Vec2D{1.0, 2.0}
+	u := vec2r.Vec2D{3.0, 4.0}
+
+	nv := v.Normalize()
+	nu := u.Normalize()
+
+	is.Equal(math.Round(nv.X*100)/100, 0.45)
+	is.Equal(math.Round(nv.Y*100)/100, 0.89)
+
+	is.Equal(math.Round(nu.X*100)/100, 0.60)
+	is.Equal(math.Round(nu.Y*100)/100, 0.80)
 }
 
 func TestAdd(t *testing.T) {
@@ -137,14 +155,16 @@ func TestDotProduct(t *testing.T) {
 
 	e := vec2r.Vec2D{-6.2, 6.0}
 	f := vec2r.Vec2D{-2.3, -1.3}
-	is.Equal(vec2r.DotProduct(e, f), 6.459999999999999) // fix this
+	dotp := math.Round(vec2r.DotProduct(e, f)*100) / 100
+	is.Equal(dotp, 6.46)
 }
 
 func TestAngle(t *testing.T) {
 	is := is.New(t)
 	u := vec2r.Vec2D{1, 2}
 	v := vec2r.Vec2D{0, 3}
-	is.Equal(vec2r.Angle(u, v), 0.46364760900080615) // fix this
+	ang := math.Round(vec2r.Angle(u, v)*100) / 100
+	is.Equal(ang, 0.46)
 }
 
 func TestString(t *testing.T) {
