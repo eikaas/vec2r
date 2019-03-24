@@ -32,13 +32,11 @@ s := vec2r.CrossProduct(v, u)
 // Get angle between vectors v & u
 degrees := vec2r.Angle(v, u) * math.Pi/180
 
-// Arrow notation
-fmt.Println(vec2r.SymArrow('u'))
+// u⃗ ⨯ v⃗
+fmt.Println(vec2r.SymArrow('u'), vec2r.SymCross, vec2r.SymArrow('v'))
 
-// Arrow notation, enclodes in vertical magnitude bars
-fmt.Println(vec2r.SymMagnitude('u'))
+// ‖u⃗‖ ⋅ ‖v⃗‖
+fmt.Println(vec2r.SymMagnitude('u'), vec2r.SymDot, vec2r.SymMagnitude('v'))
 
-// Cross and Dot operators
-fmt.Println(vec2r.SymDot())
-fmt.Println(vec2r.SymCross())
+
 ```
